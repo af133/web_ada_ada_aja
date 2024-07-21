@@ -102,7 +102,7 @@ def index():
 
 @app.route('/start_bruteforce', methods=['POST'])
 def start_bruteforce():
-    username = "Alyanurissabela"
+    username = "...."
     charset = string.ascii_letters
     min_length = 8
     max_length = 15
