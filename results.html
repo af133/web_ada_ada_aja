@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hack Instagram Account - Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .result {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        .result p {
+            font-size: 18px;
+            color: #333;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function fetchCurrentPassword() {
+            fetch('/current_password')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('current-password').textContent = data.password || 'N/A';
+                })
+                .catch(error => console.error('Error fetching current password:', error));
+        }
+
+        setInterval(fetchCurrentPassword, 2000); // Update every 2 seconds
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Brute Force Results</h1>
+        <div class="result">
+            {% if password %}
+                <p>Password found: <strong>{{ password }}</strong></p>
+            {% else %}
+                <p>{{ error or "Password not found or process still running." }}</p>
+            {% endif %}
+        </div>
+        <div class="result">
+            <p>Current password being processed: <span id="current-password">Loading...</span></p>
+        </div>
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+</body>
+</html>
